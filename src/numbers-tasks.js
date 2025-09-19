@@ -18,8 +18,8 @@
  *   5, 10 => 50
  *   5, 5  => 25
  */
-function getRectangleArea(width,height) {
-   return width * height;
+function getRectangleArea(width, height) {
+  return width * height;
 }
 
 /**
@@ -68,7 +68,7 @@ function getAverage(value1, value2) {
  *   (-5,0) (10,-10) => 18.027756377319946
  */
 function getDistanceBetweenPoints(x1, y1, x2, y2) {
-  return Math.sqrt((x2 - x1)**2 + (y2 - y1)**2);
+  return Math.sqrt((x2 - x1) ** 2 + (y2 - y1) ** 2);
 }
 
 /**
@@ -83,14 +83,14 @@ function getDistanceBetweenPoints(x1, y1, x2, y2) {
  *   x + 8 = 0       => -8
  *   5*x = 0         => 0
  */
-function getLinearEquationRoot(a,b ) {
+function getLinearEquationRoot(a, b) {
   if (a === 0 && b === 0) {
-    return Infinity; 
+    return Infinity;
   }
   if (a === 0 && b !== 0) {
-    return null; 
+    return null;
   }
-  return -b / a; 
+  return -b / a;
 }
 
 /**
@@ -111,27 +111,28 @@ function getLinearEquationRoot(a,b ) {
  *   (0,1) (0,1)     => 0
  */
 function getAngleBetweenVectors(x1, y1, x2, y2) {
-  function formatAngels(ratio){
+  function formatAngels(ratio) {
     const known = {
-      0 : '0',
-      0.25 : 'π/4',
-      0.5 : 'π/2',
+      0: '0',
+      0.25: 'π/4',
+      0.5: 'π/2',
       0.75: '3π/4',
-      1:'π'
+      1: 'π',
+    };
+
+    for (const key of Object.keys(known)) {
+      if (ratio === Number(key)) {
+        return known[key];
+      }
     }
-  
-  for(let key in known){
-    if(ratio === Number(key)){
-    return known[key]
-    }
+    return `${ratio.toFixed(4)}π`;
   }
-}; 
-  
-  let a = Math.sqrt(x1**2 + y1**2);
-  let b = Math.sqrt(x2**2 + y2**2);
-  let cos = (x1*x2 + y1*y2) / (Math.sqrt(x1**2 + y1 ** 2) * Math.sqrt(x2**2 + y2**2))
-  let radians = Math.acos(cos);
-  let ratio = radians / Math.PI
+
+  const cos =
+    (x1 * x2 + y1 * y2) /
+    (Math.sqrt(x1 ** 2 + y1 ** 2) * Math.sqrt(x2 ** 2 + y2 ** 2));
+  const radians = Math.acos(cos);
+  const ratio = radians / Math.PI;
   return formatAngels(ratio);
 }
 
@@ -149,9 +150,9 @@ function getAngleBetweenVectors(x1, y1, x2, y2) {
  *     0     => 0
  */
 function getLastDigit(value) {
-  const r = value.toString()
-  const r1 = r[r.length -1]
-  return Number(r1)
+  const r = value.toString();
+  const r1 = r[r.length - 1];
+  return Number(r1);
 }
 
 /**
@@ -166,7 +167,7 @@ function getLastDigit(value) {
  * '-525.5'     => -525.5
  */
 function parseNumberFromString(value) {
-  return(Number(value));
+  return Number(value);
 }
 
 /**
@@ -183,7 +184,7 @@ function parseNumberFromString(value) {
  *   1,2,3   => 3.741657386773941
  */
 function getParallelepipedDiagonal(a, b, c) {
-  return Math.sqrt(a**2+b**2+c**2);
+  return Math.sqrt(a ** 2 + b ** 2 + c ** 2);
 }
 
 /**
@@ -204,7 +205,7 @@ function getParallelepipedDiagonal(a, b, c) {
  *   1678, 3  => 2000
  */
 function roundToPowerOfTen(num, pow) {
-  return Math.round(num / 10**pow) * 10**pow
+  return Math.round(num / 10 ** pow) * 10 ** pow;
 }
 
 /**
