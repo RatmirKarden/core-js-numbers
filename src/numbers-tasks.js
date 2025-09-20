@@ -111,31 +111,12 @@ function getLinearEquationRoot(a, b) {
  *   (0,1) (0,1)     => 0
  */
 function getAngleBetweenVectors(x1, y1, x2, y2) {
-  function formatAngels(ratio) {
-    const known = {
-      0: '0',
-      0.25: 'π/4',
-      0.5: 'π/2',
-      0.75: '3π/4',
-      1: 'π',
-    };
-
-    let result;
-    Object.keys(known).forEach((key) => {
-      if (ratio === Number(key)) {
-        result = known[key];
-      }
-    });
-
-    return result || `${ratio.toFixed(4)}π`;
-  }
-
   const cos =
     (x1 * x2 + y1 * y2) /
     (Math.sqrt(x1 ** 2 + y1 ** 2) * Math.sqrt(x2 ** 2 + y2 ** 2));
+
   const radians = Math.acos(cos);
-  const ratio = radians / Math.PI;
-  return formatAngels(ratio);
+  return radians;
 }
 
 /**
@@ -152,9 +133,7 @@ function getAngleBetweenVectors(x1, y1, x2, y2) {
  *     0     => 0
  */
 function getLastDigit(value) {
-  const r = value.toString();
-  const r1 = r[r.length - 1];
-  return Number(r1);
+  return Math.abs(value) % 10;
 }
 
 /**
@@ -516,7 +495,7 @@ function getFloatOnString(str) {
  * '10', 8              => 8
  */
 function getIntegerOnString(str, base) {
-  return parseInt(str, base);
+  return Number.parseInt(str, base);
 }
 
 /**
@@ -604,8 +583,9 @@ function getIntegerPartNumber(number) {
  * 1, 2, 3       => 6
  * 0.1, 0.2, 0.3 => 0.6
  */
-function getSumOfNumbers(x1, x2, x3) {
-  return x1 + x2 + x3;
+function getSumOfNumbers(...nums) {
+  const sum = nums.reduce((acc, n) => acc + n, 0);
+  return Number(sum.toFixed(12));
 }
 
 /**
@@ -620,11 +600,8 @@ function getSumOfNumbers(x1, x2, x3) {
  * -5, -6 => -5
  * 0, 5   => 5
  */
-function getMaxNumber(firstNumber, secondNumber) {
-  if (firstNumber > secondNumber) {
-    return firstNumber;
-  }
-  return secondNumber;
+function getMaxNumber(...nums) {
+  return Math.max(...nums);
 }
 
 /**
@@ -671,7 +648,7 @@ function getHypotenuse(a, b) {
  * 15 => 8
  */
 function getCountOfOddNumbers(number) {
-  return Math.floor((number + 1) / 2);
+  return Math.floor((Math.abs(number) + 1) / 2);
 }
 
 module.exports = {
